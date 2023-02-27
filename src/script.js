@@ -28,7 +28,29 @@ const matcapTexture = textureLoader.load("/textures/matcaps/8.png");
 const fontLoader = new FontLoader();
 
 fontLoader.load("/fonts/helvetiker_regular.typeface.json", (font) => {
-	const textGeometry = new TextGeometry("Donuts anyone?", {
+	const textName = new TextGeometry("Johnnie", {
+		font: font,
+		size: 0.5,
+		height: 0.2,
+		curveSegments: 5,
+		bevelEnabled: true,
+		bevelThickness: 0.03,
+		bevelSize: 0.02,
+		bevelOffset: 0,
+		bevelSegments: 4,
+	});
+	const textDev = new TextGeometry("Developer", {
+		font: font,
+		size: 0.5,
+		height: 0.2,
+		curveSegments: 5,
+		bevelEnabled: true,
+		bevelThickness: 0.03,
+		bevelSize: 0.02,
+		bevelOffset: 0,
+		bevelSegments: 4,
+	});
+	const textDesigner = new TextGeometry("Designer", {
 		font: font,
 		size: 0.5,
 		height: 0.2,
@@ -40,34 +62,47 @@ fontLoader.load("/fonts/helvetiker_regular.typeface.json", (font) => {
 		bevelSegments: 4,
 	});
 
-	textGeometry.center();
+	// const textHobby = new TextGeometry("For the animals", {
+	// 	font: font,
+	// 	size: 0.5,
+	// 	height: 0.2,
+	// 	curveSegments: 5,
+	// 	bevelEnabled: true,
+	// 	bevelThickness: 0.03,
+	// 	bevelSize: 0.02,
+	// 	bevelOffset: 0,
+	// 	bevelSegments: 4,
+	// });
+	textName.center();
+	textDev.center();
+	textDesigner.center();
+	// textHobby.center();
 	const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
-	const text = new THREE.Mesh(textGeometry, material);
-	scene.add(text);
+	const nameText = new THREE.Mesh(textName, material);
+	const devText = new THREE.Mesh(textDev, material);
+	const designerText = new THREE.Mesh(textDesigner, material);
+	// const hobbyText = new THREE.Mesh(textHobby, material);
+	devText.position.set(0, -0.8, 0);
+	designerText.position.set(0, -1.5, 0);
+	// hobbyText.position.set(0, -2.1, 0);
+	scene.add(nameText);
+	scene.add(devText);
+	scene.add(designerText);
+	// scene.add(hobbyText);
 
 	const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45);
 	for (let i = 0; i < 200; i++) {
 		const donut = new THREE.Mesh(donutGeometry, material);
 		scene.add(donut);
 
-		donut.position.x = (Math.random() - 0.5) * 10;
-		donut.position.y = (Math.random() - 0.5) * 10;
-		donut.position.z = (Math.random() - 0.5) * 10;
+		donut.position.x = (Math.random() - 0.5) * 15;
+		donut.position.y = (Math.random() - 0.5) * 15;
+		donut.position.z = (Math.random() - 0.5) * 15;
 
 		donut.rotation.x = Math.random() * Math.PI;
 		donut.rotation.y = Math.random() * Math.PI;
 	}
 });
-
-/**
- * Object
- */
-const cube = new THREE.Mesh(
-	new THREE.BoxGeometry(1, 1, 1),
-	new THREE.MeshBasicMaterial()
-);
-
-// scene.add(cube);
 
 /**
  * Sizes
@@ -102,8 +137,8 @@ const camera = new THREE.PerspectiveCamera(
 	100
 );
 camera.position.x = 1;
-camera.position.y = 1;
-camera.position.z = 2;
+camera.position.y = 0;
+camera.position.z = 5;
 scene.add(camera);
 
 // Controls
