@@ -73,9 +73,7 @@ fontLoader.load("/fonts/helvetiker_regular.typeface.json", (font) => {
 	designerText.position.set(0, -0.8, 0);
 	nameText.position.set(0, 0.8, 0);
 
-	scene.add(nameText);
-	scene.add(devText);
-	scene.add(designerText);
+	scene.add(nameText, devText, designerText);
 
 	const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45);
 	for (let i = 0; i < 200; i++) {
