@@ -8,7 +8,7 @@ import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
  * Base
  */
 // Debug
-const gui = new dat.GUI();
+// const gui = new dat.GUI();
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
@@ -62,33 +62,20 @@ fontLoader.load("/fonts/helvetiker_regular.typeface.json", (font) => {
 		bevelSegments: 4,
 	});
 
-	// const textHobby = new TextGeometry("For the animals", {
-	// 	font: font,
-	// 	size: 0.5,
-	// 	height: 0.2,
-	// 	curveSegments: 5,
-	// 	bevelEnabled: true,
-	// 	bevelThickness: 0.03,
-	// 	bevelSize: 0.02,
-	// 	bevelOffset: 0,
-	// 	bevelSegments: 4,
-	// });
 	textName.center();
 	textDev.center();
 	textDesigner.center();
-	// textHobby.center();
+
 	const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
 	const nameText = new THREE.Mesh(textName, material);
 	const devText = new THREE.Mesh(textDev, material);
 	const designerText = new THREE.Mesh(textDesigner, material);
-	// const hobbyText = new THREE.Mesh(textHobby, material);
-	devText.position.set(0, -0.8, 0);
-	designerText.position.set(0, -1.5, 0);
-	// hobbyText.position.set(0, -2.1, 0);
+	designerText.position.set(0, -0.8, 0);
+	nameText.position.set(0, 0.8, 0);
+
 	scene.add(nameText);
 	scene.add(devText);
 	scene.add(designerText);
-	// scene.add(hobbyText);
 
 	const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45);
 	for (let i = 0; i < 200; i++) {
@@ -138,7 +125,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.x = 1;
 camera.position.y = 0;
-camera.position.z = 5;
+camera.position.z = 10;
 scene.add(camera);
 
 // Controls
