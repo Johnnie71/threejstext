@@ -28,7 +28,7 @@ const mat2capTexture = textureLoader.load("/textures/matcaps/4.png");
  */
 const fontLoader = new FontLoader();
 
-fontLoader.load("/fonts/helvetiker_regular.typeface.json", (font) => {
+fontLoader.load("/fonts/Mynerve_Regular.json", (font) => {
 	const textName = new TextGeometry("Johnnie", {
 		font: font,
 		size: 0.5,
